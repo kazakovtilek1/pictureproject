@@ -1,11 +1,11 @@
-import Firstpage from "@/components/Firstpage";
+import Header from "@/components/header/Header";
+import TitleSection from "@/components/titleSection/TitleSection";
 
 export default function Page() {
   return (
     <div>
-      <main>
-        <Firstpage />
-      </main>
+      <Header />
+      <TitleSection />
     </div>
   );
 }
