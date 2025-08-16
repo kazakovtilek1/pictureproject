@@ -8,16 +8,14 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 px-5 md:px-0">
+    <header className="sticky top-0 z-50 px-5 xl:px-0">
       <nav
         className={`relative max-w-[1180px] mx-auto px-4 py-4 flex justify-between items-center bg-[rgba(102,155,188,0.1)] backdrop-blur-3xl ${menuOpen ? "rounded-t-[20px]" : "rounded-[20px]"}`}
       >
         <p className="text-[#669BBC] font-bold text-xl pl-5">ADAM IZI</p>
 
         {/* Десктопное меню */}
-        <ul
-          className={`md:flex gap-2.5 ${menuOpen ? "hidden" : "hidden md:flex"}`}
-        >
+        <ul className="hidden md:flex gap-2.5">
           {navLinks.map((link) => (
             <li key={`${link.href}-${link.label}`}>
               <Link

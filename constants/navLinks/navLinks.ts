@@ -1,7 +1,7 @@
 export const navLinks = [
-  { label: "О проекте", href: "/" },
-  { label: "Процесс участия", href: "/" },
-  { label: "Частые вопросы", href: "/" },
-  { label: "Наши контакты", href: "/" },
-  { label: "Волонтеры", href: "/" },
+  { label: "О проекте", href: "#aboutProject" },
+  { label: "Процесс участия", href: "#processPart" },
+  { label: "Частые вопросы", href: "#questions" },
+  { label: "Наши контакты", href: "#" },
+  { label: "Волонтеры", href: "#" },
 ];
