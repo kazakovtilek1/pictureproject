@@ -6,7 +6,7 @@ export default function TitleSection() {
       <div className="max-w-[1180px] mx-auto mt-25 px-5 xl:px-0">
         <div className="flex flex-col items-center gap-15 md:flex-row justify-between">
           <div className="items-center md:items-start flex flex-col gap-9">
-            <h1 className="text-2xl font-bold text-center md:text-start sm:text-5xl text-[#780000] leading-[1.2]">
+            <h1 className="font-grotesk text-2xl font-bold text-center md:text-start sm:text-5xl text-[#780000] leading-[1.2]">
               Стань частью <br className="hidden md:block" /> самой{" "}
               <br className="block md:hidden" /> большой{" "}
               <br className="hidden md:block" />
@@ -107,7 +107,7 @@ export default function TitleSection() {
             className="w-full"
           />
           <div className="absolute top-20 left-8 right-8 bottom-1 overflow-y-auto sm:overflow-visible bg-white p-4 rounded-2xl">
-            <h2 className="uppercase text-xl font-medium">О проекте</h2>
+            <h2 className=" uppercase text-xl font-medium">О проекте</h2>
             <p className="my-4 text-xs font-normal">
               Эта картина создаётся руками 100 000 кыргызстанцев. Каждый может
               оставить свой след, заполнив элемент картины, став его соавтором и

@@ -7,3 +7,31 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+h2 {
+  font-family: 'Akzidenz Grotesk', sans-serif !important;
+}
+
+
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('/fonts/Akzidenz-Grotesk-Pro/akzidenzgroteskpro_mdex.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('/fonts/Akzidenz-Grotesk-Pro/akzidenzgroteskpro_boldex.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .font-grotesk {
+    font-family: 'Akzidenz Grotesk', sans-serif !important;
+  }
+}

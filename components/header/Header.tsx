@@ -8,7 +8,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 px-5 xl:px-0">
+    <header className="sticky top-0 z-51 px-5 xl:px-0">
       <nav
         className={`relative max-w-[1180px] mx-auto px-4 py-4 flex justify-between items-center bg-[rgba(102,155,188,0.1)] backdrop-blur-3xl ${menuOpen ? "rounded-t-[20px]" : "rounded-[20px]"}`}
       >
@@ -19,7 +19,7 @@ export default function Header() {
           {navLinks.map((link) => (
             <li key={`${link.href}-${link.label}`}>
               <Link
-                className="font-normal text-base px-6 pb-3.5 pt-3"
+                className="font-normal text-base px-6 pb-3.5 pt-3 hover:text-[#730202]"
                 href={link.href}
               >
                 {link.label}

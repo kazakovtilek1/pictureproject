@@ -1,171 +1,119 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import React, { useState, useCallback, useEffect } from "react";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+import { motion } from "framer-motion";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { carouselImages } from "@/constants/carouselImages/carouselImages";
 
-export default function ImageCarousel() {
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    loop: true,
-    mode: "free-snap",
-    slides: {
-      origin: "center",
-      perView: 7,
-      spacing: 16,
-    },
-    initial: 3, // центр
-  });
+export default function Carousel() {
+  const [current, setCurrent] = useState(0);
+  const [maxSide, setMaxSide] = useState(3); // сколько с каждой стороны
+  const [mainSize, setMainSize] = useState({ w: 518, h: 350 });
+  const length = carouselImages.length;
 
-  const [styleMap, setStyleMap] = useState<
-    Record<number, { width: number; height: number }>
-  >({});
-
-  const updateStyles = useCallback(() => {
-    if (!instanceRef.current) return;
-
-    const details = instanceRef.current.track.details;
-    const newStyles: Record<number, { width: number; height: number }> = {};
-
-    details.slides.forEach((slide, idx) => {
-      const distance = Math.abs(slide.distance);
-
-      let width = 0;
-      let height = 0;
-
-      if (distance === 0) {
-        width = 518;
-        height = 350;
-      } else if (distance === 1) {
-        width = 400;
-        height = 270;
-      } else if (distance === 2) {
-        width = 280;
-        height = 189;
-      } else if (distance === 3) {
-        width = 180;
-        height = 122;
-      } else {
-        width = 100;
-        height = 68;
-      }
-
-      newStyles[idx] = { width, height };
-    });
-
-    setStyleMap(newStyles);
-  }, [instanceRef]);
-
-  // Обновляем стили при изменениях слайдера и при монтировании
+  // адаптив
   useEffect(() => {
-    if (!instanceRef.current) return;
-
-    const slider = instanceRef.current;
-
-    updateStyles();
-
-    // В текущей версии Keen Slider используем подписку через instanceRef.current.on с функцией
-    // но без .off - поэтому мы будем просто подписываться и очищать эффекты с помощью флага
-
-    function onSlideChanged() {
-      updateStyles();
-    }
-
-    function onDetailsChanged() {
-      updateStyles();
-    }
-
-    slider.on("slideChanged", onSlideChanged);
-    slider.on("detailsChanged", onDetailsChanged);
-
-    // Возвращаем функцию очистки для предотвращения утечек
-    return () => {
-      // В версии 6.8.6 метод off может быть недоступен, но на самом деле он есть, но может не типизироваться.
-      // Можно попробовать привести к any:
-      (slider as any).off("slideChanged", onSlideChanged);
-      (slider as any).off("detailsChanged", onDetailsChanged);
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) {
+        setMaxSide(0);
+        setMainSize({ w: 320, h: 250 });
+      } else if (w < 768) {
+        setMaxSide(1);
+        setMainSize({ w: 400, h: 300 });
+      } else if (w < 1024) {
+        setMaxSide(2);
+        setMainSize({ w: 518, h: 350 });
+      } else {
+        setMaxSide(3);
+        setMainSize({ w: 518, h: 350 });
+      }
     };
-  }, [instanceRef, updateStyles]);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
-  const handlePrev = () => {
-    instanceRef.current?.prev();
+  const prev = () => setCurrent((p) => (p === 0 ? length - 1 : p - 1));
+  const next = () => setCurrent((p) => (p === length - 1 ? 0 : p + 1));
+
+  // размеры боковых слайдов - подогнаны под mainSize
+  const sizeFor = (d: number) => {
+    if (d === 0) return { w: mainSize.w, h: mainSize.h, z: 50 };
+    if (Math.abs(d) === 1) return { w: 89, h: 289, z: 40 };
+    if (Math.abs(d) === 2) return { w: 53, h: 238, z: 30 };
+    if (Math.abs(d) === 3) return { w: 19, h: 173, z: 20 };
+    return { w: 0, h: 0, z: 0 };
   };
 
-  const handleNext = () => {
-    instanceRef.current?.next();
+  // Отступы и позиционирование слайдов с учётом gap и ширины mainSize
+  const xFor = (d: number) => {
+    const center = mainSize.w / 2;
+    const offsets = [89, 53, 19]; // ширины боковых слайдов
+    const gap = 40; // расстояние между слайдами
+
+    if (d === 0) return 0;
+
+    let x = d > 0 ? center : -center;
+    for (let i = 1; i < Math.abs(d); i++) {
+      x += (d > 0 ? 1 : -1) * (offsets[i - 1] + gap);
+    }
+    x += (d > 0 ? 1 : -1) * (offsets[Math.abs(d) - 1] / 2 + gap / 2);
+
+    return x;
   };
+
+  // Ширина контейнера зависит от mainSize и maxSide
+  const containerWidth = mainSize.w + maxSide * 2 * (89 + 40); // 89 - средняя ширина боковых слайдов, 40 - gap
 
   return (
-    <div className="w-full px-4 mt-10 relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center mt-30 mb-35 px-4">
       <div
-        ref={sliderRef}
-        className="keen-slider flex justify-center items-center"
-        style={{ gap: "16px" }}
+        className="relative flex items-center justify-center overflow-x-hidden"
+        style={{ height: mainSize.h, width: containerWidth, maxWidth: "100%" }}
       >
-        {carouselImages.map((img, idx) => {
-          const style = styleMap[idx];
+        {carouselImages.map((img, index) => {
+          let d = index - current;
+          if (d > length / 2) d -= length;
+          if (d < -length / 2) d += length;
+
+          if (Math.abs(d) > maxSide) return null; // показываем только в пределах maxSide
+
+          const { w, h, z } = sizeFor(d);
+
           return (
-            <div
-              key={idx}
-              className="keen-slider__slide flex justify-center items-center"
-              style={{
-                width: style ? `${style.width}px` : "180px",
-                height: style ? `${style.height}px` : "122px",
-                transition: "width 0.3s ease, height 0.3s ease",
-                flexShrink: 0,
-              }}
+            <motion.div
+              key={index}
+              className="absolute rounded-[20px] overflow-hidden shadow-lg cursor-pointer flex items-center justify-center"
+              style={{ zIndex: z }}
+              animate={{ x: xFor(d), width: w, height: h, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              onClick={() => setCurrent(index)}
             >
               <Image
                 src={img.image}
-                alt={`Slide ${idx}`}
-                width={style ? style.width : 180}
-                height={style ? style.height : 122}
-                className="rounded-xl object-cover shadow-lg"
-                priority={idx === 3}
+                alt={`Slide ${index}`}
+                fill
+                className="object-cover rounded-[20px]"
               />
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
-      <div className="mt-6 flex gap-4">
+      <div className="flex justify-center items-center gap-[65px] mt-8">
         <button
-          onClick={handlePrev}
-          className="w-12 h-12 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition"
-          aria-label="Previous Slide"
+          onClick={prev}
+          className="p-3 rounded-full bg-gray-200 shadow-md hover:bg-gray-300 transition cursor-pointer"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-6 h-6"
-            viewBox="0 0 24 24"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
+          <IoIosArrowBack size={28} color="#669BBC" />
         </button>
-
         <button
-          onClick={handleNext}
-          className="w-12 h-12 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition"
-          aria-label="Next Slide"
+          onClick={next}
+          className="p-3 rounded-full bg-gray-200 shadow-md hover:bg-gray-300 transition cursor-pointer"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-6 h-6"
-            viewBox="0 0 24 24"
-          >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
+          <IoIosArrowForward size={28} color="#669BBC" />
         </button>
       </div>
     </div>

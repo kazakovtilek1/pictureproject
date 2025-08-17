@@ -14,7 +14,7 @@ export default function Footer() {
           style={{ opacity: 0.12 }}
         ></div>
         <div className="max-w-[1180px] flex flex-col gap-7 sm:flex-row sm:gap-11 md:gap-18 mx-auto px-5 xl:px-0 pt-20 pb-28">
-          <h3 className="text-[#669BBC] text-[17px] text-center sm:text-start sm:text-xl font-bold">
+          <h3 className="font-grotesk text-[#669BBC] text-[17px] text-center sm:text-start sm:text-xl font-bold">
             KÖCHMÖN ART: ADAM IZI
           </h3>
           <div className="flex flex-col gap-15 sm:flex-row sm:justify-between flex-1">
