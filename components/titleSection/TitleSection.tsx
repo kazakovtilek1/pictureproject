@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function TitleSection() {
   return (
     <div className="bg-[url('/Images/background2.svg')] bg-no-repeat bg-cover bg-center">
-      <div className="max-w-[1180px] mx-auto mt-25 px-5 xl:px-0">
+      <div className="max-w-[1180px] mx-auto mt-15 px-5 xl:px-0">
         <div className="flex flex-col items-center gap-15 md:flex-row justify-between">
           <div className="items-center md:items-start flex flex-col gap-9">
             <h1 className="font-grotesk text-2xl font-bold text-center md:text-start sm:text-5xl text-[#780000] leading-[1.2]">
@@ -106,7 +106,7 @@ export default function TitleSection() {
             height={564}
             className="w-full"
           />
-          <div className="absolute top-20 left-8 right-8 bottom-1 overflow-y-auto sm:overflow-visible bg-white p-4 rounded-2xl">
+          <div className="absolute top-20 left-8 right-8 overflow-y-auto sm:overflow-visible bg-white p-4 rounded-2xl">
             <h2 className=" uppercase text-xl font-medium">О проекте</h2>
             <p className="my-4 text-xs font-normal">
               Эта картина создаётся руками 100 000 кыргызстанцев. Каждый может

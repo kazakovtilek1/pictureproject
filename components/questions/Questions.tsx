@@ -6,7 +6,7 @@ export default function Questions() {
   return (
     <div
       id="questions"
-      className="scroll-mt-5 max-w-[1180px] md:mx-0 2xl:mx-auto 2xl:px-0 flex flex-col items-center md:flex-row md:items-end md:gap-30 mt-35 mb-25"
+      className="scroll-mt-5 px-5 max-w-[1180px] md:mx-0 2xl:mx-auto 2xl:px-0 flex flex-col items-center md:flex-row md:items-end md:gap-30 mt-35 mb-25"
     >
       {/* Мобильное изображение */}
       <div className="block md:hidden w-full">
