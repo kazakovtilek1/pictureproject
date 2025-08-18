@@ -61,10 +61,10 @@ export default function TitleSection() {
               </div>
             </div>
             <div
-              className="static mt-5
+              className="hidden sm:flex static mt-5
                          sm:absolute sm:top-30 sm:left-7
                          md:absolute md:top-75 md:-left-30
-              w-[320px] sm:w-[248px] h-25 flex items-center py-2.5 pl-2.5 pr-5 gap-2.5 bg-white rounded-2xl transition-transform duration-400 ease-in-out
+              w-[320px] sm:w-[248px] h-25 items-center py-2.5 pl-2.5 pr-5 gap-2.5 bg-white rounded-2xl transition-transform duration-400 ease-in-out
                 hover:scale-110 hover:shadow-lg"
             >
               <Image
@@ -76,10 +76,10 @@ export default function TitleSection() {
               <p className="text-xl font-normal">Единство</p>
             </div>
             <div
-              className="static mt-5
+              className="hidden sm:flex static mt-5
                          sm:absolute sm:top-60 sm:left-7
                          md:absolute md:top-105 md:-left-30
-              w-[320px] sm:w-[248px] h-25 flex items-center py-2.5 pl-2.5 pr-5  gap-2.5 bg-white rounded-2xl transition-transform duration-400 ease-in-out
+              w-[320px] sm:w-[248px] h-25 items-center py-2.5 pl-2.5 pr-5  gap-2.5 bg-white rounded-2xl transition-transform duration-400 ease-in-out
                 hover:scale-110 hover:shadow-lg"
             >
               <Image

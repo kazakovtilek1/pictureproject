@@ -16,7 +16,7 @@ export default function Header() {
           <p className="text-[#669BBC] font-bold text-xl pl-5">ADAM IZI</p>
 
           {/* Десктопное меню */}
-          <ul className="hidden md:flex gap-2.5">
+          <ul className="hidden lg:flex gap-2.5">
             {navLinks.map((link) => (
               <li key={`${link.href}-${link.label}`}>
                 <Link
@@ -32,7 +32,7 @@ export default function Header() {
           {/* Кнопка бургера */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
+            className="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
             aria-label="Toggle menu"
           >
             <span
