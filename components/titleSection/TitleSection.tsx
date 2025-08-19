@@ -24,7 +24,10 @@ export default function TitleSection() {
                 искусстве <br className="hidden md:block" /> Кыргызстана
               </p>
             </div>
-            <button className="w-[320px] sm:w-[354px] md:w-[280px] uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-all ease-in-out duration-300">
+            <button
+              className="w-[320px] sm:w-[354px] md:w-[280px] active:scale-95 active:brightness-50
+               uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-all ease-in-out duration-300"
+            >
               Принять участие
             </button>
           </div>

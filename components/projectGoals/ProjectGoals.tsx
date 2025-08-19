@@ -11,12 +11,13 @@ export default function ProjectGoals() {
         </h2>
         <div className="flex flex-col gap-5 mt-15">
           <div className="place-items-center grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {cards.map((card) => (
+            {cards.map((card, idx) => (
               <FlipCard
                 key={card.id}
                 icon={card.icon}
                 frontText={card.frontText}
                 backText={card.backText}
+                isFirst={idx === 0}
               />
             ))}
           </div>

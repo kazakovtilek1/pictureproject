@@ -1,23 +1,54 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { CardData } from "@/constants/cardsData/cardsData";
 
-type FlipCardProps = Omit<CardData, "id">;
+type FlipCardProps = Omit<CardData, "id"> & {
+  isFirst?: boolean;
+};
 
-export default function FlipCard({ icon, frontText, backText }: FlipCardProps) {
+export default function FlipCard({
+  icon,
+  frontText,
+  backText,
+  isFirst = false,
+}: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasFlippedOnce, setHasFlippedOnce] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleResize = () => {
+    function checkMobile() {
       setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    }
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (!isFirst || !isMobile || hasFlippedOnce || !cardRef.current) return;
+
+    const timeoutId = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setFlipped(true);
+            setHasFlippedOnce(true);
+            setTimeout(() => setFlipped(false), 2000);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.4 }
+      );
+
+      observer.observe(cardRef.current!);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [isFirst, isMobile, hasFlippedOnce]);
 
   const toggleFlip = () => {
     if (isMobile) setFlipped(!flipped);
@@ -25,13 +56,14 @@ export default function FlipCard({ icon, frontText, backText }: FlipCardProps) {
 
   return (
     <div
-      className="group [perspective:1000px] w-[320px] h-[200px] sm:w-[354px] sm:h-[270px] md:w-70 md:h-67"
+      ref={cardRef}
+      className={`group [perspective:1000px] w-[320px] h-[200px] sm:w-[354px] sm:h-[270px] md:w-70 md:h-67`}
       onClick={toggleFlip}
     >
       <div
-        className={`relative w-full h-full transform transition-transform duration-700 [transform-style:preserve-3d] ${
+        className={`relative w-full h-full transform transition-transform duration-900 [transform-style:preserve-3d] ${
           flipped ? "rotate-y-180" : ""
-        } group-hover:rotate-y-180`}
+        } ${!isMobile ? "group-hover:rotate-y-180" : ""}`}
       >
         {/* FrontSide */}
         <div className="absolute w-full h-full [backface-visibility:hidden] rounded-2xl bg-[#669BBC] flex flex-col justify-between p-4">
