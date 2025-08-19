@@ -25,7 +25,7 @@ export default function TitleSection() {
               </p>
             </div>
             <button
-              className="w-[320px] sm:w-[354px] md:w-[280px] active:scale-90 active:brightness-50
+              className="w-[320px] sm:w-[354px] md:w-[280px] active:scale-95 active:brightness-50
                uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out"
             >
               Принять участие

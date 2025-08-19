@@ -20,7 +20,7 @@ export default function TakePart() {
             controls
             className="w-full h-full object-cover aspect-video rounded-[20px]"
           />
-          <button className="active:scale-90 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out">
+          <button className="active:scale-95 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out">
             Принять участие
           </button>
         </div>
