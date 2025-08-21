@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 export default function TitleSection() {
@@ -25,6 +27,12 @@ export default function TitleSection() {
               </p>
             </div>
             <button
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSdyOD8qRyHMP76vBJnvcbTTEnZH5Ei2gGu2n0uvAqPHSg-ykg/viewform",
+                  "_blank"
+                )
+              }
               className="w-[320px] sm:w-[354px] md:w-[280px] active:scale-95 active:brightness-50
                uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out"
             >

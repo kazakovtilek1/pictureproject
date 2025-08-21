@@ -1,3 +1,5 @@
+"use client";
+
 import { partCards } from "@/constants/takePartCards/takePartCards";
 import TakePartCard from "./TakePartCard";
 
@@ -20,7 +22,15 @@ export default function TakePart() {
             controls
             className="w-full h-full object-cover aspect-video rounded-[20px]"
           />
-          <button className="active:scale-95 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out">
+          <button
+            onClick={() =>
+              window.open(
+                "https://docs.google.com/forms/d/e/1FAIpQLSdyOD8qRyHMP76vBJnvcbTTEnZH5Ei2gGu2n0uvAqPHSg-ykg/viewform",
+                "_blank"
+              )
+            }
+            className="active:scale-95 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out"
+          >
             Принять участие
           </button>
         </div>
