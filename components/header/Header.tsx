@@ -19,12 +19,23 @@ export default function Header() {
           <ul className="hidden lg:flex gap-2.5">
             {navLinks.map((link) => (
               <li key={`${link.href}-${link.label}`}>
-                <Link
-                  className="font-normal text-base px-6 pb-3.5 pt-3 hover:text-[#730202]"
-                  href={link.href}
-                >
-                  {link.label}
-                </Link>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-normal text-base px-6 pb-3.5 pt-3 hover:text-[#730202]"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    className="font-normal text-base px-6 pb-3.5 pt-3 hover:text-[#730202]"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -60,13 +71,25 @@ export default function Header() {
                 <ul className="flex flex-col gap-4 w-full text-center">
                   {navLinks.map((link) => (
                     <li key={`${link.href}-${link.label}`}>
-                      <Link
-                        href={link.href}
-                        className="block font-normal text-base px-6 py-3 hover:text-[#446F8B] transition"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block font-normal text-base px-6 py-3 hover:text-[#446F8B] transition"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="block font-normal text-base px-6 py-3 hover:text-[#446F8B] transition"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
