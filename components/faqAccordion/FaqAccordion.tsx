@@ -13,7 +13,7 @@ export default function FaqAccordion({ data }: Props) {
 
   return (
     <div
-      className={`group border-b-2 py-5 transition-colors duration-300 ${
+      className={`group border-b-2 py-3 transition-colors duration-300 ${
         isOpen ? "border-[#669BBC]" : "border-[#FFE3C4]"
       } hover:border-[#669BBC]`}
     >

@@ -57,7 +57,7 @@ export default function FlipCard({
   return (
     <div
       ref={cardRef}
-      className={`group [perspective:1000px] w-[320px] h-[200px] sm:w-[354px] sm:h-[270px] md:w-70 md:h-67`}
+      className={`group [perspective:1000px] w-[320px] h-[230px] sm:w-[354px] sm:h-[300px] md:w-[280px] md:h-[298px]`}
       onClick={toggleFlip}
     >
       <div

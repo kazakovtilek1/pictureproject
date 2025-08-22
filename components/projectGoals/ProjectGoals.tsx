@@ -21,12 +21,6 @@ export default function ProjectGoals() {
               />
             ))}
           </div>
-          <div className="hidden lg:flex justify-between">
-            <div className="bg-[url('/Images/Rectangle1.png')] bg-no-repeat bg-cover bg-center w-[280px] h-[120px] rounded-2xl"></div>
-            <div className="bg-[#F8F0BF] rounded-2xl w-[280px] h-[120px]"></div>
-            <div className="bg-[#CCE0E2] rounded-2xl w-[280px] h-[120px]"></div>
-            <div className="bg-[url('/Images/Rectangle2.png')] bg-no-repeat bg-cover bg-center w-[280px] h-[120px] rounded-2xl"></div>
-          </div>
         </div>
       </div>
       <TakePart />
