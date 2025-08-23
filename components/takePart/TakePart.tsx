@@ -22,9 +22,14 @@ export default function TakePart() {
             controls
             className="w-full h-full object-cover aspect-video rounded-[20px]"
           />
-          <button className="active:scale-95 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out">
+          <a 
+            href="https://forms.gle/k7RMHXK2NAiAzBT87" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="active:scale-95 active:brightness-50 uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xs md:text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out inline-flex items-center justify-center"
+          >
             Принять участие
-          </button>
+          </a>
         </div>
       </div>
     </div>

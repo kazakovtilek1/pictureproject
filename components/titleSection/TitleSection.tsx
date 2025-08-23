@@ -26,12 +26,15 @@ export default function TitleSection() {
                 искусстве <br className="hidden md:block" /> Кыргызстана
               </p>
             </div>
-            <button
+            <a
+              href="https://forms.gle/k7RMHXK2NAiAzBT87"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-[320px] sm:w-[354px] md:w-[280px] active:scale-95 active:brightness-50
-               uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out"
+               uppercase text-white bg-[#780000] px-6 py-4 rounded-[10px] text-xl font-bold cursor-pointer hover:bg-[#E10D1D] active:bg-[#630000] transition-transform duration-150 ease-in-out inline-flex items-center justify-center"
             >
               Принять участие
-            </button>
+            </a>
           </div>
           <div className="relative">
             <div>
